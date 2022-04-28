@@ -114,12 +114,11 @@
 (setq cons-statement '(cons (somelist) (somelist)) ) (setq somelist 'yy) 
 
 ;; define a valid common lisp number 
-;; from the text "Common Lisp: The Language" 1st ed. (p.339) by Guy Steele 
 (setq numbr '((pos-int) (ratio) (floating-point-number)) ) 
 (setq pos-int '((zero) (one) (two) (three) (four) (five) (six) (seven) (eight) (nine)))
 (setq integer '((sign pos-int) (pos-int)) ) 
-(setq ratio '((sign pos-int / pos-int) (pos-int / pos-int)) ) 
-(setq floating-point-number '((pos-int) . (pos-int)) ) 
+(setq ratio '((sign pos-int over pos-int) (pos-int over pos-int)) ) ;; this is a bug.  need to concat into a sequence instead of the 'or' that separate tokens represent
+(setq floating-point-number '((pos-int) point (pos-int)) )          ;; same bug here
 (setq sign '((-) (+)) ) 
 
 ;;(print pos-int)
