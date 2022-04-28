@@ -20,15 +20,14 @@
   	(dotimes 
 	  	(count (- n 1) (car x))
 		(setq x (cdr x)) 
-
 	) 
-
 ) 
 
 ;; function to return a random element of a list x 
 ;; uses above functions num-elements and return-nth-element 
 ;; note: because (random 5) returns 1..4, I add 1 to the parm of the fn 
 (defun return-random-element (x) 
+    (setf *random-state* (make-random-state t))
   	(return-nth-element (random (+ 1 (num-elements x))) x) 
 ) 
 
@@ -98,8 +97,8 @@
 
 ;; define a simple english grammar - needs work!
 (setq english2 '((question2) (statement2)) ) 
-(setq statement2 '((statement2 and statement2) (noun-phrase verb noun-phrase) (noun-phrase verb adj noun-phrase))) 
-(setq question2 '((noun-phrase question-mark) (statement2 question-mark))) 
+(setq statement2 '((statement2 and statement2) (noun-phrase verb noun-phrase) (noun-phrase verb adj noun))) 
+(setq question2 '((noun-phrase question-mark) (why does statement2 question-mark))) 
 (setq article '((a) (the)))
 (setq noun '((dog) (alien) (lion) (boy) (girl) (teacher))) 
 (setq noun-phrase '((noun) (article noun)))
@@ -116,12 +115,13 @@
 
 ;; define a valid common lisp number 
 ;; from the text "Common Lisp: The Language" 1st ed. (p.339) by Guy Steele 
-(setq numbr '((integer) (ratio) (floating-point-number)) ) 
-(setq integer '((sign digit decimal) (sign digit) (digit decimal) (digit)) ) 
-(setq ratio '((sign digit / digit) (digit / digit)) ) 
-(setq floating-point-number '((numbr) . (numbr)) ) 
-(setq digit '((0) (1) (2) (3) (4) (5) (6) (7) (8) (9)) ) 
+(setq numbr '((pos-int) (ratio) (floating-point-number)) ) 
+(setq pos-int '((zero) (one) (two) (three) (four) (five) (six) (seven) (eight) (nine)))
+(setq integer '((sign pos-int) (pos-int)) ) 
+(setq ratio '((sign pos-int / pos-int) (pos-int / pos-int)) ) 
+(setq floating-point-number '((pos-int) . (pos-int)) ) 
 (setq sign '((-) (+)) ) 
 
+;;(print pos-int)
 (utter english2)
 (display-ans)
