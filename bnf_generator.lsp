@@ -93,6 +93,9 @@
 
 ;; *********************************************************************
 ;; * a few sample BNF-like grammars 
+;; * simple BNF rules:
+;; * (setq english2 '((question2) (statement2)) ) means "english2 can be a question2 _OR_ a statement2" 
+;; *                 (noun-phrase verb adj noun)  means "noun-phrase THEN a verb THEN and adj THEN a noun, in that order"  
 ;; *********************************************************************
 
 ;; define a simple english grammar - needs work!
@@ -117,10 +120,10 @@
 (setq numbr '((pos-int) (ratio) (floating-point-number)) ) 
 (setq pos-int '((zero) (one) (two) (three) (four) (five) (six) (seven) (eight) (nine)))
 (setq integer '((sign pos-int) (pos-int)) ) 
-(setq ratio '((sign pos-int over pos-int) (pos-int over pos-int)) ) ;; this is a bug.  need to concat into a sequence instead of the 'or' that separate tokens represent
-(setq floating-point-number '((pos-int) point (pos-int)) )          ;; same bug here
+(setq ratio '((sign pos-int over pos-int) (pos-int over pos-int)) ) 
+(setq floating-point-number '(pos-int point pos-int) )          
 (setq sign '((-) (+)) ) 
 
-;;(print pos-int)
+;;example run
 (utter english2)
 (display-ans)
