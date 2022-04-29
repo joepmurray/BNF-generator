@@ -1,6 +1,9 @@
 ;; ************************************************************************* 
 ;; Joe Murray INFO 680 Artificial Intelligence Drexel University 1997
 ;; ex2.lsp A BNF Grammar Parser 
+;; updates:
+;; -------------------------------------------------------------------------
+;; 2022/04/29  jpmurray  Fixed a couple of bugs - got around to it 25 years later
 ;; ************************************************************************* 
 
 (setq ans '()) 
